@@ -2,12 +2,12 @@
     ViewBag.Title = "Home Page";
 }
 
-<main>
-    @if (Session["Role"] == null)
-    {
-        @section styles {
-            <link href="@Url.Content("~/Content/NoSession.css")" rel="stylesheet" type="text/css" />
-        }
+@if (Session["Role"] == null)
+{
+    @section styles {
+        <link href="@Url.Content("~/Content/NoSession.css")" rel="stylesheet" type="text/css" />
+    }
+    <main>
         <div class="popup">
             <div class="popup-container">
                 <h3>Quản lý cửa hàng</h3>
@@ -16,10 +16,54 @@
                 </div>
             </div>
         </div>
-    }
-    else
-    {
-        <div class="popup">
-        </div>
-    }
-</main>
+    </main>
+}
+else
+{
+    <h2>Xin chào, @Session["TenNV"]!</h2>
+    <table class="table">
+        <tr>
+            <th></th>
+            <th></th>
+        </tr>
+        <tr>
+            <td>Bảng công</td>
+            <td><a href="@Url.Action("Index", "CongNhanVien")">Đi đến trang</a></td>
+        </tr>
+        <tr>
+            <td>Dịch vụ</td>
+            <td><a href="@Url.Action("Index", "DichVu")">Đi đến trang</a></td>
+        </tr>
+        <tr>
+            <td>Hình ảnh</td>
+            <td><a href="@Url.Action("Index", "HinhAnh")">Đi đến trang</a></td>
+        </tr>
+        <tr>
+            <td>Khách hàng</td>
+            <td><a href="@Url.Action("Index", "KhachHang")">Đi đến trang</a></td>
+        </tr>
+        <tr>
+            <td>Lịch hẹn</td>
+            <td><a href="@Url.Action("Index", "LichHen")">Đi đến trang</a></td>
+        </tr>
+        <tr>
+            <td>Nhân Viên</td>
+            <td><a href="@Url.Action("Index", "NhanVien")">Đi đến trang</a></td>
+        </tr>
+        <tr>
+            <td>Sản phẩm bán kèm</td>
+            <td><a href="@Url.Action("Index", "SanPhamKem")">Đi đến trang</a></td>
+        </tr>
+        @if ((bool)Session["CanEdit"])
+        {
+            <tr>
+                <td>Tài khoản</td>
+                <td><a href="@Url.Action("Index", "TaiKhoan")">Đi đến trang</a></td>
+            </tr>
+            <tr>
+                <td>Chức vụ</td>
+                <td><a href="@Url.Action("Index", "ChucVu")">Đi đến trang</a></td>
+            </tr>
+        }
+    </table>
+}

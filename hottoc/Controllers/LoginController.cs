@@ -40,7 +40,7 @@ namespace hottoc.Controllers
             {
                 database.Configuration.ValidateOnSaveEnabled = false;
                 Session["IDNV"] = check.IDNV;
-                Session["Username"] = check.Username;
+                Session["TenNV"] = check.NhanVien.HoTen;
                 Session["Role"] = check.NhanVien.ChucVu.TenChucVu;
                 Session["CanEdit"] = check.NhanVien.ChucVu.TenChucVu == "Chủ tiệm";
                 return RedirectToAction("Index", "Home");

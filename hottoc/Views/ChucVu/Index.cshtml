@@ -7,9 +7,12 @@
 
 <h2>Quản lý chức vụ</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
+@if ((bool)Session["CanEdit"])
+{
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+}
 <table class="table">
     <tr>
         <th>
@@ -24,23 +27,29 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.HeSoLuong)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.LuongCoBan)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.TenChucVu)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.HeSoLuong)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LuongCoBan)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TenChucVu)
+            </td>
+            <td>
+                @Html.ActionLink("Details", "Details", new { id = item.ID })
+                @if ((bool)Session["CanEdit"])
+                {
+                    Html.Raw("|");
+                    Html.ActionLink("Edit", "Edit", new { id = item.ID });
+                    Html.Raw("|");
+                    @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+                }
+            </td>
+        </tr>
+    }
 
 </table>
