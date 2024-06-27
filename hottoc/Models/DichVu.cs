@@ -9,6 +9,8 @@ namespace hottoc.Models
     [Table("DichVu")]
     public partial class DichVu
     {
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int ID { get; set; }
 
         [Required]

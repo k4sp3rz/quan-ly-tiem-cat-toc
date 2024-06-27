@@ -9,6 +9,8 @@ namespace hottoc.Models
     [Table("SanPhamKem")]
     public partial class SanPhamKem
     {
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int ID { get; set; }
 
         [Required]

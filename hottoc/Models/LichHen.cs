@@ -9,9 +9,11 @@ namespace hottoc.Models
     [Table("LichHen")]
     public partial class LichHen
     {
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int ID { get; set; }
 
-        [Column(TypeName = "date")]
+        [Column(TypeName = "datetime")]
         public DateTime ThoiGian { get; set; }
 
         [Required]
@@ -20,7 +22,7 @@ namespace hottoc.Models
 
         public int SDT { get; set; }
 
-        [Column(TypeName = "date")]
+        [Column(TypeName = "datetime")]
         public DateTime ThoiGianHen { get; set; }
 
         [StringLength(255)]

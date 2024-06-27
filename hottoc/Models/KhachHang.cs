@@ -9,6 +9,8 @@ namespace hottoc.Models
     [Table("KhachHang")]
     public partial class KhachHang
     {
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int ID { get; set; }
 
         [StringLength(255)]

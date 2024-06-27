@@ -9,12 +9,12 @@ namespace hottoc.Models
     [Table("DangNhap")]
     public partial class DangNhap
     {
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int ID { get; set; }
 
-        [StringLength(1)]
         public string Username { get; set; }
 
-        [StringLength(1)]
         public string Password { get; set; }
 
         public int? IDNV { get; set; }

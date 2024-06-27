@@ -16,6 +16,8 @@ namespace hottoc.Models
             SanPhamKems = new HashSet<SanPhamKem>();
         }
 
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int ID { get; set; }
 
         [StringLength(1)]

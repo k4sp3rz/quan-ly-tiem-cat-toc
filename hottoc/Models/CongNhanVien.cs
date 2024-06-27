@@ -9,11 +9,13 @@ namespace hottoc.Models
     [Table("CongNhanVien")]
     public partial class CongNhanVien
     {
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int ID { get; set; }
 
         public int IDNV { get; set; }
 
-        [Column(TypeName = "date")]
+        [Column(TypeName = "datetime")]
         public DateTime NgayCong { get; set; }
 
         public virtual NhanVien NhanVien { get; set; }

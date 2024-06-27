@@ -36,12 +36,10 @@ namespace hottoc.Models
 
             modelBuilder.Entity<DangNhap>()
                 .Property(e => e.Username)
-                .IsFixedLength()
                 .IsUnicode(false);
 
             modelBuilder.Entity<DangNhap>()
                 .Property(e => e.Password)
-                .IsFixedLength()
                 .IsUnicode(false);
 
             modelBuilder.Entity<DichVu>()

@@ -15,13 +15,15 @@ namespace hottoc.Models
             ChiTietHoaDons = new HashSet<ChiTietHoaDon>();
         }
 
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int ID { get; set; }
 
         [Required]
         [StringLength(255)]
         public string NhanVien { get; set; }
 
-        [Column(TypeName = "date")]
+        [Column(TypeName = "datetime")]
         public DateTime Ngay { get; set; }
 
         [StringLength(255)]

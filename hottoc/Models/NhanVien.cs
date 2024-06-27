@@ -16,6 +16,8 @@ namespace hottoc.Models
             DangNhaps = new HashSet<DangNhap>();
         }
 
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int ID { get; set; }
 
         [Required]

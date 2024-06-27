@@ -15,6 +15,8 @@ namespace hottoc.Models
             NhanViens = new HashSet<NhanVien>();
         }
 
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int ID { get; set; }
 
         public decimal? HeSoLuong { get; set; }
