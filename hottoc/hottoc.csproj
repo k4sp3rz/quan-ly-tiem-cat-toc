@@ -122,8 +122,16 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\ChucVuController.cs" />
     <Compile Include="Controllers\CongNhanVienController.cs" />
+    <Compile Include="Controllers\DichVuController.cs" />
+    <Compile Include="Controllers\HinhAnhController.cs" />
+    <Compile Include="Controllers\HoaDonController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\KhachHangController.cs" />
+    <Compile Include="Controllers\LichHenController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Controllers\NhanVienController.cs" />
+    <Compile Include="Controllers\SanPhamKemController.cs" />
+    <Compile Include="Controllers\TaiKhoanController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -204,6 +212,46 @@
     <Content Include="Views\CongNhanVien\Details.cshtml" />
     <Content Include="Views\CongNhanVien\Edit.cshtml" />
     <Content Include="Views\CongNhanVien\Index.cshtml" />
+    <Content Include="Views\TaiKhoan\Create.cshtml" />
+    <Content Include="Views\TaiKhoan\Delete.cshtml" />
+    <Content Include="Views\TaiKhoan\Details.cshtml" />
+    <Content Include="Views\TaiKhoan\Edit.cshtml" />
+    <Content Include="Views\TaiKhoan\Index.cshtml" />
+    <Content Include="Views\DichVu\Create.cshtml" />
+    <Content Include="Views\DichVu\Delete.cshtml" />
+    <Content Include="Views\DichVu\Details.cshtml" />
+    <Content Include="Views\DichVu\Edit.cshtml" />
+    <Content Include="Views\DichVu\Index.cshtml" />
+    <Content Include="Views\HinhAnh\Create.cshtml" />
+    <Content Include="Views\HinhAnh\Delete.cshtml" />
+    <Content Include="Views\HinhAnh\Details.cshtml" />
+    <Content Include="Views\HinhAnh\Edit.cshtml" />
+    <Content Include="Views\HinhAnh\Index.cshtml" />
+    <Content Include="Views\HoaDon\Create.cshtml" />
+    <Content Include="Views\HoaDon\Delete.cshtml" />
+    <Content Include="Views\HoaDon\Details.cshtml" />
+    <Content Include="Views\HoaDon\Edit.cshtml" />
+    <Content Include="Views\HoaDon\Index.cshtml" />
+    <Content Include="Views\KhachHang\Create.cshtml" />
+    <Content Include="Views\KhachHang\Delete.cshtml" />
+    <Content Include="Views\KhachHang\Details.cshtml" />
+    <Content Include="Views\KhachHang\Edit.cshtml" />
+    <Content Include="Views\KhachHang\Index.cshtml" />
+    <Content Include="Views\LichHen\Create.cshtml" />
+    <Content Include="Views\LichHen\Delete.cshtml" />
+    <Content Include="Views\LichHen\Details.cshtml" />
+    <Content Include="Views\LichHen\Edit.cshtml" />
+    <Content Include="Views\LichHen\Index.cshtml" />
+    <Content Include="Views\NhanVien\Create.cshtml" />
+    <Content Include="Views\NhanVien\Delete.cshtml" />
+    <Content Include="Views\NhanVien\Details.cshtml" />
+    <Content Include="Views\NhanVien\Edit.cshtml" />
+    <Content Include="Views\NhanVien\Index.cshtml" />
+    <Content Include="Views\SanPhamKem\Create.cshtml" />
+    <Content Include="Views\SanPhamKem\Delete.cshtml" />
+    <Content Include="Views\SanPhamKem\Details.cshtml" />
+    <Content Include="Views\SanPhamKem\Edit.cshtml" />
+    <Content Include="Views\SanPhamKem\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

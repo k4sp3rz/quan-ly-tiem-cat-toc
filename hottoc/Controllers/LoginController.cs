@@ -42,9 +42,17 @@ namespace hottoc.Controllers
                 Session["IDNV"] = check.IDNV;
                 Session["Username"] = check.Username;
                 Session["Role"] = check.NhanVien.ChucVu.TenChucVu;
+                Session["CanEdit"] = check.NhanVien.ChucVu.TenChucVu == "Chủ tiệm";
                 return RedirectToAction("Index", "Home");
             }
         }
+
+        public ActionResult Logout()
+        {
+            Session.Abandon();
+            return RedirectToAction("Index", "Home");
+        }
+
         protected override void Dispose(bool disposing)
         {
             if (disposing)

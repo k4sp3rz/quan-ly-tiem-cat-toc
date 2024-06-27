@@ -10,7 +10,7 @@ using hottoc.Models;
 
 namespace hottoc.Controllers
 {
-    public class CongNhanVienController : Controller
+    public class DichVuController : Controller
     {
         private Model1 db = new Model1();
 
@@ -20,131 +20,118 @@ namespace hottoc.Controllers
             var id = Session["IDNV"];
             if (id == null)
                 filterContext.Result = RedirectToAction("Index", "Login");
-
-            if (needPerms.Contains(filterContext.ActionDescriptor.ActionName)
-                && filterContext.ActionParameters.TryGetValue("id", out object getId))
+            else
             {
-                string role = (string)Session["Role"];
-                if (!id.Equals(getId) && role != "Chủ tiệm")
-                {
+                var role = Session["Role"];
+                if (needPerms.Contains(filterContext.ActionDescriptor.ActionName) && !role.Equals("Chủ tiệm"))
                     filterContext.Result = new HttpStatusCodeResult(HttpStatusCode.Forbidden);
-                }
             }
+
             base.OnActionExecuting(filterContext);
         }
 
+        // GET: DichVu
         public ActionResult Index()
         {
-            string role = (string)Session["Role"];
-            IQueryable<CongNhanVien> congNhanViens;
-            if (role == "Chủ tiệm")
-            {
-                congNhanViens = db.CongNhanViens.Include(c => c.NhanVien);
-            }
-            else
-            {
-                int id = (int)Session["IDNV"];
-                congNhanViens = db.CongNhanViens.Where(c => c.NhanVien.ID == id);
-            }
-            return View(congNhanViens.ToList());
+            var dichVus = db.DichVus.Include(d => d.HinhAnh);
+            return View(dichVus.ToList());
         }
 
-        // GET: CongNhanViens/Details/5
+        // GET: DichVu/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            CongNhanVien congNhanVien = db.CongNhanViens.Find(id);
-            if (congNhanVien == null)
+            DichVu dichVu = db.DichVus.Find(id);
+            if (dichVu == null)
             {
                 return HttpNotFound();
             }
-            return View(congNhanVien);
+            return View(dichVu);
         }
 
-        // GET: CongNhanViens/Create
+        // GET: DichVu/Create
         public ActionResult Create()
         {
-            int id = (int)Session["IDNV"];
-            ViewBag.NhanVien = db.NhanViens.Where(c => c.ID == id).FirstOrDefault();
+            ViewBag.IDHinh = new SelectList(db.HinhAnhs, "ID", "DuongDan");
             return View();
         }
 
-        // POST: CongNhanViens/Create
+        // POST: DichVu/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,IDNV,NgayCong")] CongNhanVien congNhanVien)
+        public ActionResult Create([Bind(Include = "ID,TenDV,Gia,MoTa,IDHinh")] DichVu dichVu)
         {
             if (ModelState.IsValid)
             {
-                db.CongNhanViens.Add(congNhanVien);
+                db.DichVus.Add(dichVu);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            ViewBag.IDNV = new SelectList(db.NhanViens, "ID", "HoTen", congNhanVien.IDNV);
-            return View(congNhanVien);
+            ViewBag.IDHinh = new SelectList(db.HinhAnhs, "ID", "DuongDan", dichVu.IDHinh);
+            return View(dichVu);
         }
 
-        // GET: CongNhanViens/Edit/5
+        // GET: DichVu/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            CongNhanVien congNhanVien = db.CongNhanViens.Find(id);
-            if (congNhanVien == null)
+            DichVu dichVu = db.DichVus.Find(id);
+            if (dichVu == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.IDNV = new SelectList(db.NhanViens, "ID", "HoTen", congNhanVien.IDNV);
-            return View(congNhanVien);
+            ViewBag.IDHinh = new SelectList(db.HinhAnhs, "ID", "DuongDan", dichVu.IDHinh);
+            return View(dichVu);
         }
 
-        // POST: CongNhanViens/Edit/5
+        // POST: DichVu/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,IDNV,NgayCong")] CongNhanVien congNhanVien)
+        public ActionResult Edit([Bind(Include = "ID,TenDV,Gia,MoTa,IDHinh")] DichVu dichVu)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(congNhanVien).State = EntityState.Modified;
+                db.Entry(dichVu).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.IDNV = new SelectList(db.NhanViens, "ID", "HoTen", congNhanVien.IDNV);
-            return View(congNhanVien);
+            ViewBag.IDHinh = new SelectList(db.HinhAnhs, "ID", "DuongDan", dichVu.IDHinh);
+            return View(dichVu);
         }
 
-        // GET: CongNhanViens/Delete/5
+        // GET: DichVu/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            CongNhanVien congNhanVien = db.CongNhanViens.Find(id);
-            if (congNhanVien == null)
+            DichVu dichVu = db.DichVus.Find(id);
+            if (dichVu == null)
             {
                 return HttpNotFound();
             }
-            return View(congNhanVien);
+            return View(dichVu);
         }
 
-        // POST: CongNhanViens/Delete/5
+        // POST: DichVu/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            CongNhanVien congNhanVien = db.CongNhanViens.Find(id);
-            db.CongNhanViens.Remove(congNhanVien);
+            DichVu dichVu = db.DichVus.Find(id);
+            db.DichVus.Remove(dichVu);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

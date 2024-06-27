@@ -16,13 +16,14 @@ namespace hottoc.Controllers
 
         protected override void OnActionExecuting(ActionExecutingContext filterContext)
         {
+            List<string> needPerms = new List<string> { "Create", "Edit", "Delete", "DeleteConfirmed" };
             var id = Session["IDNV"];
             if (id == null)
                 filterContext.Result = RedirectToAction("Index", "Login");
             else
             {
                 var role = Session["Role"];
-                if (!role.Equals("Chủ tiệm"))
+                if (needPerms.Contains(filterContext.ActionDescriptor.ActionName) && !role.Equals("Chủ tiệm"))
                     filterContext.Result = new HttpStatusCodeResult(HttpStatusCode.Unauthorized);
             }
 
