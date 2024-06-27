@@ -3,7 +3,23 @@
 }
 
 <main>
-    <div>
-
-    </div>
+    @if (Session["Role"] == null)
+    {
+        @section styles {
+            <link href="@Url.Content("~/Content/NoSession.css")" rel="stylesheet" type="text/css" />
+        }
+        <div class="popup">
+            <div class="popup-container">
+                <h3>Quản lý cửa hàng</h3>
+                <div class="login">
+                    <a href="@Url.Action("Index", "Login")">Đi đến trang đăng nhập</a>
+                </div>
+            </div>
+        </div>
+    }
+    else
+    {
+        <div class="popup">
+        </div>
+    }
 </main>

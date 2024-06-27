@@ -8,24 +8,22 @@
 @section Styles {
     <link href="@Url.Content("~/Content/Login.css")" rel="stylesheet" type="text/css" />
 }
-<body>
-    <div class="main">
-        <div class="login-container">
-            <h3>Login</h3>
-            @if (ViewBag.ErrorInfo != null)
-            {
-                <div class="error-info">@ViewBag.ErrorInfo</div>
-            }
-            <form method="post" action="@Url.Action("Index", "Login")">
-                @Html.AntiForgeryToken()
-                <label for="username">Username:</label>
-                <input type="text" id="username" name="username" placeholder="Enter your Username" required />
+<div class="login-popup">
+    <div class="login-container">
+        <h3>Login</h3>
+        @if (ViewBag.ErrorInfo != null)
+        {
+            <div class="error-info">@ViewBag.ErrorInfo</div>
+        }
+        <form method="post" action="@Url.Action("Index", "Login")">
+            @Html.AntiForgeryToken()
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" placeholder="Enter your Username" required />
 
-                <label for="password">Password:</label>
-                <input type="password" id="password" name="password" placeholder="Enter your Password" required />
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" placeholder="Enter your Password" required />
 
-                <input class="submit-button" type="submit" value="Login" />
-            </form>
-        </div>
+            <input class="submit-button" type="submit" value="Login" />
+        </form>
     </div>
-</body>
+</div>
