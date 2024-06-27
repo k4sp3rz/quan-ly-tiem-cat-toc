@@ -8,13 +8,16 @@ namespace hottoc.Controllers
 {
     public class HomeController : Controller
     {
+        protected override void OnActionExecuting(ActionExecutingContext filterContext)
+        {
+            var id = Session["IDNV"];
+            if (id == null)
+                filterContext.Result = RedirectToAction("Index", "Login");
+            base.OnActionExecuting(filterContext);
+        }
+
         public ActionResult Index()
         {
-            var Id = Session["IDNV"];
-            if (Id == null)
-            {
-                return RedirectToAction("Index", "Login");
-            }
             return View();
         }
 

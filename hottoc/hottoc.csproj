@@ -120,6 +120,8 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\ChucVuController.cs" />
+    <Compile Include="Controllers\CongNhanVienController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Global.asax.cs">
@@ -192,6 +194,16 @@
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Login\Index.cshtml" />
+    <Content Include="Views\ChucVu\Create.cshtml" />
+    <Content Include="Views\ChucVu\Delete.cshtml" />
+    <Content Include="Views\ChucVu\Details.cshtml" />
+    <Content Include="Views\ChucVu\Edit.cshtml" />
+    <Content Include="Views\ChucVu\Index.cshtml" />
+    <Content Include="Views\CongNhanVien\Create.cshtml" />
+    <Content Include="Views\CongNhanVien\Delete.cshtml" />
+    <Content Include="Views\CongNhanVien\Details.cshtml" />
+    <Content Include="Views\CongNhanVien\Edit.cshtml" />
+    <Content Include="Views\CongNhanVien\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

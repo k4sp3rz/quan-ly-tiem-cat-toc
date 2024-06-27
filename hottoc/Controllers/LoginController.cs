@@ -23,6 +23,7 @@ namespace hottoc.Controllers
             return View();
         }
 
+        [ValidateAntiForgeryToken]
         [HttpPost]
         public ActionResult Index(DangNhap user)
         {
@@ -43,6 +44,14 @@ namespace hottoc.Controllers
                 Session["Role"] = check.NhanVien.ChucVu.TenChucVu;
                 return RedirectToAction("Index", "Home");
             }
+        }
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                database.Dispose();
+            }
+            base.Dispose(disposing);
         }
     }
 }

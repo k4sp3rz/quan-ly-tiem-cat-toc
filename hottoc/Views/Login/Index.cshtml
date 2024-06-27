@@ -16,14 +16,14 @@
             {
                 <div class="error-info">@ViewBag.ErrorInfo</div>
             }
-            @Html.AntiForgeryToken()
             <form method="post" action="@Url.Action("Index", "Login")">
+                @Html.AntiForgeryToken()
                 <label for="username">Username:</label>
                 <input type="text" id="username" name="username" placeholder="Enter your Username" required />
 
                 <label for="password">Password:</label>
                 <input type="password" id="password" name="password" placeholder="Enter your Password" required />
-                
+
                 <input class="submit-button" type="submit" value="Login" />
             </form>
         </div>
