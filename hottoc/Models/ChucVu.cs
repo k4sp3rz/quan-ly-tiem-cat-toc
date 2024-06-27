@@ -21,6 +21,8 @@ namespace hottoc.Models
 
         public int? LuongCoBan { get; set; }
 
+        public string TenChucVu { get; set; }
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<NhanVien> NhanViens { get; set; }
     }

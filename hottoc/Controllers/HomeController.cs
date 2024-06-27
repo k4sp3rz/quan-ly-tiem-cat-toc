@@ -10,6 +10,11 @@ namespace hottoc.Controllers
     {
         public ActionResult Index()
         {
+            var Id = Session["IDNV"];
+            if (Id == null)
+            {
+                return RedirectToAction("Index", "Login");
+            }
             return View();
         }
 
@@ -24,11 +29,6 @@ namespace hottoc.Controllers
         {
             ViewBag.Message = "Your contact page.";
 
-            return View();
-        }
-
-        public ActionResult Login()
-        {
             return View();
         }
     }
