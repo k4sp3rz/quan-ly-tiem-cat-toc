@@ -20,12 +20,7 @@ namespace hottoc.Models
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int ID { get; set; }
 
-        [StringLength(1)]
         public string DuongDan { get; set; }
-
-        [Column("HinhAnh")]
-        [StringLength(1)]
-        public string HinhAnh1 { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<DichVu> DichVus { get; set; }

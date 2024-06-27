@@ -14,12 +14,11 @@ namespace hottoc.Models
         public int ID { get; set; }
 
         [Required]
-        [StringLength(255)]
         public string TenDV { get; set; }
 
+        [Required]
         public decimal Gia { get; set; }
 
-        [StringLength(255)]
         public string MoTa { get; set; }
 
         public int? IDHinh { get; set; }

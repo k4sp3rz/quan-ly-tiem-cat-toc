@@ -47,12 +47,7 @@ namespace hottoc.Models
                 .HasPrecision(18, 0);
 
             modelBuilder.Entity<HinhAnh>()
-                .Property(e => e.DuongDan)
-                .IsFixedLength();
-
-            modelBuilder.Entity<HinhAnh>()
-                .Property(e => e.HinhAnh1)
-                .IsFixedLength();
+                .Property(e => e.DuongDan);
 
             modelBuilder.Entity<HinhAnh>()
                 .HasMany(e => e.DichVus)

@@ -21,7 +21,6 @@ namespace hottoc.Models
         public int ID { get; set; }
 
         [Required]
-        [StringLength(255)]
         public string HoTen { get; set; }
 
         public int? SDT { get; set; }

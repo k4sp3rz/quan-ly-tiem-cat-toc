@@ -20,13 +20,11 @@ namespace hottoc.Models
         public int ID { get; set; }
 
         [Required]
-        [StringLength(255)]
         public string NhanVien { get; set; }
 
         [Column(TypeName = "datetime")]
         public DateTime Ngay { get; set; }
 
-        [StringLength(255)]
         public string TenKH { get; set; }
 
         public int? SDT { get; set; }
@@ -38,7 +36,6 @@ namespace hottoc.Models
         public int TongSLDV { get; set; }
 
         [Required]
-        [StringLength(255)]
         public string TenDV { get; set; }
 
         public decimal ThanhTien { get; set; }

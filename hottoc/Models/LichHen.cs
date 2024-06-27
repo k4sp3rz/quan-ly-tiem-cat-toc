@@ -17,7 +17,6 @@ namespace hottoc.Models
         public DateTime ThoiGian { get; set; }
 
         [Required]
-        [StringLength(255)]
         public string TenKH { get; set; }
 
         public int SDT { get; set; }
@@ -25,7 +24,6 @@ namespace hottoc.Models
         [Column(TypeName = "datetime")]
         public DateTime ThoiGianHen { get; set; }
 
-        [StringLength(255)]
         public string TenThoCat { get; set; }
     }
 }
