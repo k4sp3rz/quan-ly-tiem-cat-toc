@@ -47,12 +47,6 @@ namespace hottoc.Controllers
             }
         }
 
-        public ActionResult Logout()
-        {
-            Session.Abandon();
-            return RedirectToAction("Index", "Home");
-        }
-
         protected override void Dispose(bool disposing)
         {
             if (disposing)

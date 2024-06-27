@@ -1,0 +1,23 @@
+﻿body {
+    margin: auto;
+}
+
+.login {
+    padding: 15px;
+    border-radius: 10px;
+    margin-top: 25px;
+    border: none;
+    color: white;
+    cursor: pointer;
+    background-color: #4CAF50;
+    font-size: 16px;
+}
+
+    .login a {
+        color: unset;
+        text-decoration: unset;
+    }
+
+main {
+    height: 80vh;
+}

@@ -8,31 +8,15 @@ namespace hottoc.Controllers
 {
     public class HomeController : Controller
     {
-        protected override void OnActionExecuting(ActionExecutingContext filterContext)
-        {
-            var id = Session["IDNV"];
-            if (id == null)
-                filterContext.Result = RedirectToAction("Index", "Login");
-            base.OnActionExecuting(filterContext);
-        }
-
         public ActionResult Index()
         {
             return View();
         }
 
-        public ActionResult About()
+        public ActionResult Logout()
         {
-            ViewBag.Message = "Your application description page.";
-
-            return View();
-        }
-
-        public ActionResult Contact()
-        {
-            ViewBag.Message = "Your contact page.";
-
-            return View();
+            Session.Abandon();
+            return RedirectToAction("Index", "Home");
         }
     }
 }
