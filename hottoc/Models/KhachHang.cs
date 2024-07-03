@@ -24,9 +24,5 @@ namespace hottoc.Models
 
         [StringLength(255)]
         public string GhiChu { get; set; }
-
-        [Required]
-        [StringLength(255)]
-        public string Username { get; set; }
     }
 }
