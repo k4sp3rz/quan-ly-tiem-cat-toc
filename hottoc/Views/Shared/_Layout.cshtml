@@ -7,6 +7,14 @@
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
     @RenderSection("styles", false)
+    <script>
+        window.onload = (function () {
+            const currentPath = window.location.href.split("/")[3];
+            if (currentPath != undefined) {
+                document.getElementById("href_" + currentPath).classList.add("active");
+            }
+        });
+    </script>
 </head>
 <body>
     <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-dark">
@@ -30,12 +38,31 @@
             </div>
         </div>
     </nav>
-    <div class="container body-content">
-        @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
-        </footer>
+    <div class="body-content">
+        <div class="sidenav">
+            @if (Session["Role"] == null)
+            {
+                <a href="@Url.Action("Index", "Login")">Đăng nhập</a>
+            }
+            else
+            {
+                <a id="href_CongNhanVien" href="@Url.Action("Index", "CongNhanVien")">Bảng công</a>
+                <a id="href_DichVu" href="@Url.Action("Index", "DichVu")">Dịch vụ</a>
+                <a id="href_HinhAnh" href="@Url.Action("Index", "HinhAnh")">Hình ảnh</a>
+                <a id="href_KhachHang" href="@Url.Action("Index", "KhachHang")">Khách hàng</a>
+                <a id="href_LichHen" href="@Url.Action("Index", "LichHen")">Lịch hẹn</a>
+                <a id="href_NhanVien" href="@Url.Action("Index", "NhanVien")">Nhân Viên</a>
+                <a id="href_SanPhamKem" href="@Url.Action("Index", "SanPhamKem")">Sản phẩm bán kèm</a>
+                if ((bool)Session["CanEdit"])
+                {
+                    <a href="@Url.Action("Index", "TaiKhoan")">Tài khoản</a>
+                    <a href="@Url.Action("Index", "ChucVu")">Chức vụ</a>
+                }
+            }
+        </div>
+        <main class="container">
+            @RenderBody()
+        </main>
     </div>
 
     @Scripts.Render("~/bundles/jquery")
