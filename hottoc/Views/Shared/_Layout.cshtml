@@ -55,8 +55,8 @@
                 <a id="href_SanPhamKem" href="@Url.Action("Index", "SanPhamKem")">Sản phẩm bán kèm</a>
                 if ((bool)Session["CanEdit"])
                 {
-                    <a href="@Url.Action("Index", "TaiKhoan")">Tài khoản</a>
-                    <a href="@Url.Action("Index", "ChucVu")">Chức vụ</a>
+                    <a id="href_TaiKhoan" href="@Url.Action("Index", "TaiKhoan")">Tài khoản</a>
+                    <a id="href_ChucVu" href="@Url.Action("Index", "ChucVu")">Chức vụ</a>
                 }
             }
         </div>
