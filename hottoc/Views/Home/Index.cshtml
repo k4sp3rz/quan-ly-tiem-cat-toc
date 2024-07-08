@@ -51,9 +51,13 @@ else
             <td><a href="@Url.Action("Index", "NhanVien")">Đi đến trang</a></td>
         </tr>
         <tr>
-            <td>Sản phẩm bán kèm</td>
-            <td><a href="@Url.Action("Index", "SanPhamKem")">Đi đến trang</a></td>
+            <td>Hoá đơn</td>
+            <td><a href="@Url.Action("Index", "HoaDon")">Đi đến trang</a></td>
         </tr>
+          <tr>
+      <td>Sản phẩm bán kèm</td>
+      <td><a href="@Url.Action("Index", "SanPhamKem")">Đi đến trang</a></td>
+  </tr>
         @if ((bool)Session["CanEdit"])
         {
             <tr>
