@@ -46,15 +46,16 @@ namespace hottoc.Controllers
         // GET: HoaDon/Create
         public ActionResult Create()
         {
+            // Gán dữ liệu cho ViewBag.TenDV trong GET
+            ViewBag.TenDV = new SelectList(db.DichVus, "ID", "TenDV");
+            ViewBag.TenSP = new SelectList(db.SanPhamKems, "ID", "TenSP");
             return View();
         }
 
         // POST: HoaDon/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,NhanVien,Ngay,TenKH,SDT,TongSLSP,TongTienSP,TongSLDV,TenDV,ThanhTien,KhachTra,ThoiLai")] HoaDon hoaDon)
+        public ActionResult Create([Bind(Include = "ID,NhanVien,Ngay,TenKH,SDT,TenSP,TongSLSP,TongTienSP,TongSLDV,TenDV,ThanhTien,KhachTra,ThoiLai")] HoaDon hoaDon)
         {
             if (ModelState.IsValid)
             {
@@ -63,8 +64,12 @@ namespace hottoc.Controllers
                 return RedirectToAction("Index");
             }
 
+            // Gán lại dữ liệu cho ViewBag.TenDV trong trường hợp ModelState không hợp lệ
+            ViewBag.TenDV = new SelectList(db.DichVus, "ID", "TenDV");
+            ViewBag.TenSP = new SelectList(db.SanPhamKems, "ID", "TenSP");
             return View(hoaDon);
         }
+
 
         // GET: HoaDon/Edit/5
         public ActionResult Edit(int? id)

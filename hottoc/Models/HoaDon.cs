@@ -34,10 +34,9 @@ namespace hottoc.Models
         public int? TongTienSP { get; set; }
 
         public int TongSLDV { get; set; }
-
+        [Required]
         public string TenSP { get; set; }
 
-        [Required]
         public string TenDV { get; set; }
 
         public decimal ThanhTien { get; set; }

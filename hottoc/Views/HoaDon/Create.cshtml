@@ -52,8 +52,8 @@
         <label class="control-label" for="IDBrand">Tên sản phẩm</label>
              @*       @Html.LabelFor(model => model.TenSP, htmlAttributes: new { @class = "control-label col-md-2" })*@
         <div class="col-md-10">
-      @*       @Html.DropDownList("TenDV", null, htmlAttributes: new { @class = "form-control" })*@
-            @Html.EditorFor(model => model.TenSP, new { htmlAttributes = new { @class = "form-control" } })
+             @Html.DropDownList("TenSP", null, htmlAttributes: new { @class = "form-control" })
+          @*  @Html.EditorFor(model => model.TenSP, new { htmlAttributes = new { @class = "form-control" } })*@
             @Html.ValidationMessageFor(model => model.TenSP, "", new { @class = "text-danger" })
         </div>
     </div>
@@ -79,8 +79,8 @@
         <label class="control-label" for="IDBrand">Tên dịch vụ</label>
         @*            @Html.LabelFor(model => model.TenDV, htmlAttributes: new { @class = "control-label col-md-2" })*@
         <div class="col-md-10">
-            @* @Html.DropDownList("TenDV", null, htmlAttributes: new { @class = "form-control" })*@
-            @Html.EditorFor(model => model.TenDV, new { htmlAttributes = new { @class = "form-control" } })
+             @Html.DropDownList("TenDV", null, htmlAttributes: new { @class = "form-control" })
+          @*  @Html.EditorFor(model => model.TenDV, new { htmlAttributes = new { @class = "form-control" } })*@
             @Html.ValidationMessageFor(model => model.TenDV, "", new { @class = "text-danger" })
         </div>
     </div>
