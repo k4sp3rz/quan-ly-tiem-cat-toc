@@ -36,6 +36,8 @@ namespace hottoc.Models
         public int TongSLDV { get; set; }
 
         [Required]
+        public string TenSP { get; set; }
+
         public string TenDV { get; set; }
 
         public decimal ThanhTien { get; set; }
