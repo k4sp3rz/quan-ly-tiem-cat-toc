@@ -74,8 +74,6 @@ namespace hottoc.Controllers
         }
 
         // POST: HoaDon/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create(HoaDon rawHoaDon)
@@ -125,6 +123,7 @@ namespace hottoc.Controllers
 
             return View(rawHoaDon);
         }
+
 
         // GET: HoaDon/Edit/5
         public ActionResult Edit(int? id)
