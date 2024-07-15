@@ -46,28 +46,82 @@ namespace hottoc.Controllers
         // GET: HoaDon/Create
         public ActionResult Create()
         {
-            // Gán dữ liệu cho ViewBag.TenDV trong GET
-            ViewBag.TenDV = new SelectList(db.DichVus, "ID", "TenDV");
-            ViewBag.TenSP = new SelectList(db.SanPhamKems, "ID", "TenSP");
+            ViewBag.NhanVien = db.NhanViens.Select(n => new SelectListItem
+            {
+                Text = n.HoTen,
+                Value = n.ID.ToString()
+            }).ToList();
+
+            ViewBag.KhachHang = db.KhachHangs.Select(n => new SelectListItem
+            {
+                Text = n.HoTen,
+                Value = n.ID.ToString()
+            }).ToList();
+
+            ViewBag.DanhSachDV = db.DichVus.Select(n => new SelectListItem
+            {
+                Text = n.TenDV,
+                Value = n.ID.ToString()
+            }).ToList();
+
+            ViewBag.DanhSachSP = db.SanPhamKems.Select(n => new SelectListItem
+            {
+                Text = n.TenSP,
+                Value = n.ID.ToString()
+            }).ToList();
+
             return View();
         }
 
         // POST: HoaDon/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,NhanVien,Ngay,TenKH,SDT,TenSP,TongSLSP,TongTienSP,TongSLDV,TenDV,ThanhTien,KhachTra,ThoiLai")] HoaDon hoaDon)
+        public ActionResult Create(HoaDon rawHoaDon)
         {
+            if (rawHoaDon == null) return View("Error");
+
+            if (rawHoaDon.DanhSachSP != null)
+            {
+                foreach (var (idSP, slSP) in rawHoaDon.DanhSachSP.Zip(rawHoaDon.SoLuongSP, (n, c) => (n, c)))
+                {
+                    var sp = db.SanPhamKems.Where(x => x.ID == idSP).First();
+                    db.ChiTietHoaDons.Add(new ChiTietHoaDon
+                    {
+                        IDHoaDon = rawHoaDon.ID,
+                        Loai = "Sản phẩm kèm",
+                        SoLuong = slSP,
+                        ThanhTien = sp.Gia * slSP,
+                        TenSP = sp.TenSP,
+                    });
+                }
+
+                foreach (var (idDV, slDV) in rawHoaDon.DanhSachDV.Zip(rawHoaDon.SoLuongDV, (n, c) => (n, c)))
+                {
+                    var dv = db.DichVus.Where(x => x.ID == idDV).First();
+                    db.ChiTietHoaDons.Add(new ChiTietHoaDon
+                    {
+                        IDHoaDon = rawHoaDon.ID,
+                        Loai = "Dịch vụ",
+                        SoLuong = slDV,
+                        ThanhTien = dv.Gia * slDV,
+                        TenSP = dv.TenDV,
+                    });
+                }
+            }
+
+            var idNV = int.Parse(rawHoaDon.NhanVien);
+            rawHoaDon.NhanVien = db.NhanViens.Where(x => x.ID == idNV).First().HoTen;
+            rawHoaDon.TongSLDV = rawHoaDon.SoLuongDV.Count;
+            rawHoaDon.TongSLSP = rawHoaDon.SoLuongSP.Count;
+
             if (ModelState.IsValid)
             {
-                db.HoaDons.Add(hoaDon);
+                db.HoaDons.Add(rawHoaDon);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            // Gán lại dữ liệu cho ViewBag.TenDV trong trường hợp ModelState không hợp lệ
-            ViewBag.TenDV = new SelectList(db.DichVus, "ID", "TenDV");
-            ViewBag.TenSP = new SelectList(db.SanPhamKems, "ID", "TenSP");
-            return View(hoaDon);
+            return View(rawHoaDon);
         }
 
 
