@@ -5,11 +5,100 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Index</h2>
+@if (ViewBag.HoaDon != null)
+{
+    <dl class="dl-horizontal">
+        <dt>
+            NhanVien
+        </dt>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
+        <dd>
+            @ViewBag.HoaDon.NhanVien
+        </dd>
+
+        <dt>
+            Ngay
+        </dt>
+
+        <dd>
+            @ViewBag.HoaDon.Ngay
+        </dd>
+
+        <dt>
+            TenKH
+        </dt>
+
+        <dd>
+            @ViewBag.HoaDon.TenKH
+        </dd>
+
+        <dt>
+            SDT
+        </dt>
+
+        <dd>
+            @ViewBag.HoaDon.SDT
+        </dd>
+
+        <dt>
+            TongSLSP
+        </dt>
+
+        <dd>
+            @ViewBag.HoaDon.TongSLSP
+        </dd>
+
+        <dt>
+            TongTienSP
+        </dt>
+
+        <dd>
+            @ViewBag.HoaDon.TongTienSP
+        </dd>
+
+        <dt>
+            TongTienDV
+        </dt>
+
+        <dd>
+            @ViewBag.HoaDon.TongTienDV
+        </dd>
+
+        <dt>
+            TongSLDV
+        </dt>
+
+        <dd>
+            @ViewBag.HoaDon.TongSLDV
+        </dd>
+
+        <dt>
+            ThanhTien
+        </dt>
+
+        <dd>
+            @ViewBag.HoaDon.ThanhTien
+        </dd>
+
+        <dt>
+            KhachTra
+        </dt>
+
+        <dd>
+            @ViewBag.HoaDon.KhachTra
+        </dd>
+
+        <dt>
+            ThoiLai
+        </dt>
+
+        <dd>
+            @ViewBag.HoaDon.ThoiLai
+        </dd>
+
+    </dl>
+}
+
 <table class="table">
     <tr>
         <th>
@@ -30,29 +119,30 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.HoaDon.NhanVien)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Loai)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.TenSP)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.SoLuong)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ThanhTien)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.HoaDon.NhanVien)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Loai)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TenSP)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SoLuong)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ThanhTien)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
+                @Html.ActionLink("Details", "Details", new { id = item.ID }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+            </td>
+        </tr>
+    }
 
 </table>

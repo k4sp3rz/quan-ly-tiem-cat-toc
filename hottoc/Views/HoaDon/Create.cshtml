@@ -16,105 +16,105 @@
 {
     @Html.AntiForgeryToken()
 
-<div class="form-horizontal">
-    <h4>HoaDon</h4>
-    <hr />
-    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-    <div class="form-group">
-        <label class="control-label col-md-2">Nhân viên</label>
-        <div class="col-md-10">
-            @Html.DropDownList("NhanVien", null, htmlAttributes: new { @class = "form-control" })
-            @Html.ValidationMessageFor(model => model.NhanVien, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-    <div class="form-group">
-        @Html.LabelFor(model => model.Ngay, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            <input class="form-control text-box single-line" data-val="true" data-val-date="The field Ngay must be a date." data-val-required="The Ngay field is required." id="Ngay" name="Ngay" type="datetime-local" value="@DateTime.Now.ToString("yyyy-MM-dd'T'HH:mm")">
-            @Html.ValidationMessageFor(model => model.Ngay, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-    <div class="form-group">
-        <label class="control-label col-md-2">Tên khách hàng</label>
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.TenKH, new { htmlAttributes = new { @class = "form-control", oninput = "search(this)", onfocus = "enableDropdown()", onfocusout = "disableDropdown()" } })
-            <div id="search-dropdown" class="dropdown-menu">
-                <a class="dropdown-item" href="#">Nhập để tìm kiếm...</a>
+    <div class="form-horizontal">
+        <h4>HoaDon</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            <label class="control-label col-md-2">Nhân viên</label>
+            <div class="col-md-10">
+                @Html.DropDownList("NhanVien", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.NhanVien, "", new { @class = "text-danger" })
             </div>
-            @Html.ValidationMessageFor(model => model.TenKH, "", new { @class = "text-danger" })
         </div>
-    </div>
 
-    <div class="form-group">
-        <label class="control-label col-md-2">Số điện thoại</label>
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.SDT, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.SDT, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.Ngay, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <input class="form-control text-box single-line" data-val="true" data-val-date="The field Ngay must be a date." data-val-required="The Ngay field is required." id="Ngay" name="Ngay" type="datetime-local" value="@DateTime.Now.ToString("yyyy-MM-dd'T'HH:mm")">
+                @Html.ValidationMessageFor(model => model.Ngay, "", new { @class = "text-danger" })
+            </div>
         </div>
-    </div>
 
-    <div class="form-group">
-        <label class="control-label col-md-2">Tổng số lượng sản phẩm</label>
-        <div class="col-md-10">
-            @Html.DropDownList("DanhSachSP", null, htmlAttributes: new { @id = "multiple-select-field2", @class = "form-select", multiple = "", data_placeholder = "Chọn sản phẩm..." })
+        <div class="form-group">
+            <label class="control-label col-md-2">Tên khách hàng</label>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.TenKH, new { htmlAttributes = new { @class = "form-control", oninput = "search(this)", onfocus = "enableDropdown()", onfocusout = "disableDropdown()" } })
+                <div id="search-dropdown" class="dropdown-menu">
+                    <a class="dropdown-item" href="#">Nhập để tìm kiếm...</a>
+                </div>
+                @Html.ValidationMessageFor(model => model.TenKH, "", new { @class = "text-danger" })
+            </div>
         </div>
-    </div>
 
-    <div class="form-group">
-        <label class="control-label col-md-2">Tổng tiền sản phẩm</label>
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.TongTienSP, new { htmlAttributes = new { @class = "form-control", @readOnly = true } })
-            @Html.ValidationMessageFor(model => model.TongTienSP, "", new { @class = "text-danger" })
+        <div class="form-group">
+            <label class="control-label col-md-2">Số điện thoại</label>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.SDT, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.SDT, "", new { @class = "text-danger" })
+            </div>
         </div>
-    </div>
 
-    <div class="form-group">
-        <label class="control-label col-md-2">Tên Dịch vụ</label>
-        <div class="col-md-10">
-            @Html.DropDownList("DanhSachDV", null, htmlAttributes: new { @id = "multiple-select-field", @class = "form-select", multiple = "", data_placeholder = "Chọn dịch vụ..." })
+        <div class="form-group">
+            <label class="control-label col-md-2">Tổng số lượng sản phẩm</label>
+            <div class="col-md-10">
+                @Html.DropDownList("DanhSachSP", null, htmlAttributes: new { @id = "multiple-select-field2", @class = "form-select", multiple = "", data_placeholder = "Chọn sản phẩm..." })
+            </div>
         </div>
-    </div>
 
-    <div class="form-group">
-        <label class="control-label col-md-2">Tổng tiền dịch vụ</label>
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.TongTienDV, new { htmlAttributes = new { @class = "form-control", @readOnly = true } })
-            @Html.ValidationMessageFor(model => model.TongTienDV, "", new { @class = "text-danger"})
+        <div class="form-group">
+            <label class="control-label col-md-2">Tổng tiền sản phẩm</label>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.TongTienSP, new { htmlAttributes = new { @class = "form-control", @readOnly = true } })
+                @Html.ValidationMessageFor(model => model.TongTienSP, "", new { @class = "text-danger" })
+            </div>
         </div>
-    </div>
 
-    <div class="form-group">
-        <label class="control-label col-md-2">Thành tiền</label>
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.ThanhTien, new { htmlAttributes = new { @class = "form-control", @readOnly = true } })
-            @Html.ValidationMessageFor(model => model.ThanhTien, "", new { @class = "text-danger" })
+        <div class="form-group">
+            <label class="control-label col-md-2">Tên Dịch vụ</label>
+            <div class="col-md-10">
+                @Html.DropDownList("DanhSachDV", null, htmlAttributes: new { @id = "multiple-select-field", @class = "form-select", multiple = "", data_placeholder = "Chọn dịch vụ..." })
+            </div>
         </div>
-    </div>
 
-    <div class="form-group">
-        <label class="control-label col-md-2">Khách trả</label>
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.KhachTra, new { htmlAttributes = new { @class = "form-control", onchange = "khactraChange()" } })
-            @Html.ValidationMessageFor(model => model.KhachTra, "", new { @class = "text-danger" })
+        <div class="form-group">
+            <label class="control-label col-md-2">Tổng tiền dịch vụ</label>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.TongTienDV, new { htmlAttributes = new { @class = "form-control", @readOnly = true } })
+                @Html.ValidationMessageFor(model => model.TongTienDV, "", new { @class = "text-danger" })
+            </div>
         </div>
-    </div>
 
-    <div class="form-group">
-        <label class="control-label col-md-2">Thối lại</label>
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.ThoiLai, new { htmlAttributes = new { @class = "form-control", @readOnly = true } })
-            @Html.ValidationMessageFor(model => model.ThoiLai, "", new { @class = "text-danger" })
+        <div class="form-group">
+            <label class="control-label col-md-2">Thành tiền</label>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.ThanhTien, new { htmlAttributes = new { @class = "form-control", @readOnly = true } })
+                @Html.ValidationMessageFor(model => model.ThanhTien, "", new { @class = "text-danger" })
+            </div>
         </div>
-    </div>
 
-    <div class="form-group">
-        <div class="col-md-offset-2 col-md-10">
-            <input type="submit" value="Create" class="btn btn-default" />
+        <div class="form-group">
+            <label class="control-label col-md-2">Khách trả</label>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.KhachTra, new { htmlAttributes = new { @class = "form-control", onchange = "khactraChange()" } })
+                @Html.ValidationMessageFor(model => model.KhachTra, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2">Thối lại</label>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.ThoiLai, new { htmlAttributes = new { @class = "form-control", @readOnly = true } })
+                @Html.ValidationMessageFor(model => model.ThoiLai, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
         </div>
     </div>
-</div>
 }
 
 <div>

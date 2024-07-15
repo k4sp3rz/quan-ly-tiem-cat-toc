@@ -23,6 +23,10 @@
             .aaa::-webkit-scrollbar {
                 display: none;
             }
+
+        .abc a {
+            font-size: 16px;
+        }
     </style>
 </head>
 <body>
@@ -59,6 +63,7 @@
                 <a id="href_DichVu" href="@Url.Action("Index", "DichVu")">Dịch vụ</a>
                 <a id="href_HinhAnh" href="@Url.Action("Index", "HinhAnh")">Hình ảnh</a>
                 <a id="href_KhachHang" href="@Url.Action("Index", "KhachHang")">Khách hàng</a>
+                <a id="href_HoaDon" href="@Url.Action("Index", "HoaDon")">Hóa đơn</a>
                 <a id="href_LichHen" href="@Url.Action("Index", "LichHen")">Lịch hẹn</a>
                 <a id="href_NhanVien" href="@Url.Action("Index", "NhanVien")">Nhân Viên</a>
                 <a id="href_SanPhamKem" href="@Url.Action("Index", "SanPhamKem")">Sản phẩm bán kèm</a>
@@ -67,6 +72,11 @@
                     <a id="href_TaiKhoan" href="@Url.Action("Index", "TaiKhoan")">Tài khoản</a>
                     <a id="href_ChucVu" href="@Url.Action("Index", "ChucVu")">Chức vụ</a>
                 }
+                <hr style="opacity: 1; color: #212529;" />
+                <div class="abc">
+                    <a href="@Url.Action("Create", "HoaDon")">Tạo Hóa đơn</a>
+                </div>
+
             }
         </div>
         <main class="container aaa overflow-y-scroll">

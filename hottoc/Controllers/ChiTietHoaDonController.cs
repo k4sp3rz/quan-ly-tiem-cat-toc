@@ -15,10 +15,21 @@ namespace hottoc.Controllers
         private Model1 db = new Model1();
 
         // GET: ChiTietHoaDon
-        public ActionResult Index()
+        public ActionResult Index(string id)
         {
-            var chiTietHoaDons = db.ChiTietHoaDons.Include(c => c.HoaDon);
-            return View(chiTietHoaDons.ToList());
+            if (id == null)
+            {
+                var chiTietHoaDons = db.ChiTietHoaDons.Include(c => c.HoaDon);
+                return View(chiTietHoaDons.ToList());
+            }
+            
+            int cId = int.Parse(id);
+            var hoadon = db.HoaDons.Where(x => x.ID.Equals(cId)).FirstOrDefault();
+            if (hoadon == null)
+                return HttpNotFound();
+
+            ViewBag.HoaDon = hoadon;
+            return View(hoadon.ChiTietHoaDons.ToList());
         }
 
         // GET: ChiTietHoaDon/Details/5
