@@ -46,6 +46,12 @@ namespace hottoc.Controllers
         // GET: LichHen/Create
         public ActionResult Create()
         {
+            ViewBag.TenThoCat = db.NhanViens.Select(n => new SelectListItem
+            {
+                Text = n.HoTen,
+                Value = n.HoTen
+            }).ToList();
+
             return View();
         }
 
