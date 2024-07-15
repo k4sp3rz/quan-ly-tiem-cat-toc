@@ -7,109 +7,114 @@
 
 <h2>Tạo hóa đơn</h2>
 
+@section styles {
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2-bootstrap-5-theme@1.3.0/dist/select2-bootstrap-5-theme.min.css" />
+}
 
-@using (Html.BeginForm()) 
+@using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
-    <div class="form-horizontal">
-        <h4>HoaDon</h4>
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <div class="form-group">
-            @Html.LabelFor(model => model.NhanVien, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.NhanVien, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.NhanVien, "", new { @class = "text-danger" })
-            </div>
-        </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Ngay, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Ngay, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Ngay, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.TenKH, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.TenKH, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.TenKH, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.SDT, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.SDT, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.SDT, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.TongSLSP, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.TongSLSP, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.TongSLSP, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.TongTienSP, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.TongTienSP, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.TongTienSP, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.TongSLDV, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.TongSLDV, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.TongSLDV, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.TenDV, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.TenDV, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.TenDV, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.ThanhTien, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.ThanhTien, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.ThanhTien, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.KhachTra, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.KhachTra, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.KhachTra, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.ThoiLai, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.ThoiLai, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.ThoiLai, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
-            </div>
+<div class="form-horizontal">
+    <h4>HoaDon</h4>
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="form-group">
+        <label class="control-label col-md-2">Nhân viên</label>
+        <div class="col-md-10">
+            @Html.DropDownList("NhanVien", null, htmlAttributes: new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.NhanVien, "", new { @class = "text-danger" })
         </div>
     </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Ngay, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            <input class="form-control text-box single-line" data-val="true" data-val-date="The field Ngay must be a date." data-val-required="The Ngay field is required." id="Ngay" name="Ngay" type="datetime-local" value="@DateTime.Now.ToString("yyyy-MM-dd'T'HH:mm")">
+            @Html.ValidationMessageFor(model => model.Ngay, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-md-2">Tên khách hàng</label>
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.TenKH, new { htmlAttributes = new { @class = "form-control", oninput = "search(this)", onfocus = "enableDropdown()", onfocusout = "disableDropdown()" } })
+            <div id="search-dropdown" class="dropdown-menu">
+                <a class="dropdown-item" href="#">Nhập để tìm kiếm...</a>
+            </div>
+            @Html.ValidationMessageFor(model => model.TenKH, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-md-2">Số điện thoại</label>
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.SDT, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.SDT, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-md-2">Tổng số lượng sản phẩm</label>
+        <div class="col-md-10">
+            @Html.DropDownList("DanhSachSP", null, htmlAttributes: new { @id = "multiple-select-field2", @class = "form-select", multiple = "", data_placeholder = "Chọn sản phẩm..." })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-md-2">Tổng tiền sản phẩm</label>
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.TongTienSP, new { htmlAttributes = new { @class = "form-control", @readOnly = true } })
+            @Html.ValidationMessageFor(model => model.TongTienSP, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-md-2">Tên Dịch vụ</label>
+        <div class="col-md-10">
+            @Html.DropDownList("DanhSachDV", null, htmlAttributes: new { @id = "multiple-select-field", @class = "form-select", multiple = "", data_placeholder = "Chọn dịch vụ..." })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-md-2">Tổng tiền dịch vụ</label>
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.TongTienDV, new { htmlAttributes = new { @class = "form-control", @readOnly = true } })
+            @Html.ValidationMessageFor(model => model.TongTienDV, "", new { @class = "text-danger"})
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-md-2">Thành tiền</label>
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.ThanhTien, new { htmlAttributes = new { @class = "form-control", @readOnly = true } })
+            @Html.ValidationMessageFor(model => model.ThanhTien, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-md-2">Khách trả</label>
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.KhachTra, new { htmlAttributes = new { @class = "form-control", onchange = "khactraChange()" } })
+            @Html.ValidationMessageFor(model => model.KhachTra, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-md-2">Thối lại</label>
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.ThoiLai, new { htmlAttributes = new { @class = "form-control", @readOnly = true } })
+            @Html.ValidationMessageFor(model => model.ThoiLai, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Create" class="btn btn-default" />
+        </div>
+    </div>
+</div>
 }
 
 <div>
@@ -117,5 +122,128 @@
 </div>
 
 @section Scripts {
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     @Scripts.Render("~/bundles/jqueryval")
+    <script>
+        function khactraChange() {
+            v = document.getElementById("ThanhTien").value
+            t = document.getElementById("KhachTra").value
+            document.getElementById("ThoiLai").value = Number(t) - Number(v)
+        }
+
+        async function search(div) {
+            const resp = await fetch("/KhachHang/Search?q=" + div.value)
+            if (!resp.ok) {
+                throw new Error(`Response status: ${resp.status}`);
+            }
+
+            const json = await resp.json();
+            const dropdown = document.getElementById("search-dropdown")
+
+            dropdown.innerHTML = ""
+            for (let k in json) {
+                let a = document.createElement("div")
+                a.innerHTML = k
+                a.setAttribute("onclick", `setSearch("${k}", "${json[k]}");`)
+                a.className = "dropdown-item"
+                dropdown.appendChild(a)
+            }
+            console.log(json);
+        }
+
+        function setSearch(name, num) {
+            disableDropdown(0)
+            document.getElementById("TenKH").value = name
+            document.getElementById("SDT").value = num
+        }
+
+        function enableDropdown() {
+            document.getElementById("search-dropdown").style.display = "block"
+        }
+
+        function disableDropdown(delay = 300) {
+            setTimeout(() => {
+                document.getElementById("search-dropdown").style.display = "none"
+            }, delay)
+        }
+
+        function focusON(n, div) {
+            setTimeout(() => {
+                $(n).select2('close');
+                div.focus();
+            }, 1)
+        }
+
+        function updateTotal() {
+            dv = document.getElementById("TongTienDV").value
+            sp = document.getElementById("TongTienSP").value
+            document.getElementById("ThanhTien").value = Number(dv) + Number(sp)
+        }
+
+        async function updateInputChange(classname) {
+            const searchClass = document.getElementsByClassName(classname)
+            let total = 0
+            for (let i = 0; i < searchClass.length; i++) {
+                let div = searchClass[i]
+                const resp = await fetch(
+                    `/${classname == "sldv_" ? "DichVu" : "SanPhamKem"}/Calculate?q=${div.parentElement.title}&sl=${div.value}`
+                )
+                if (!resp.ok) {
+                    throw new Error(`Response status: ${resp.status}`);
+                }
+
+                const respV = await resp.text();
+                total += Number(respV)
+            }
+            document.getElementById(classname == "sldv_" ? "TongTienDV" : "TongTienSP").value = total;
+            updateTotal()
+            khactraChange()
+        }
+
+        $(document).ready(function () {
+            $('#multiple-select-field').select2({
+                theme: "bootstrap-5",
+                width: $(this).data('width') ? $(this).data('width') : $(this).hasClass('w-100') ? '100%' : 'style',
+                placeholder: $(this).data('placeholder'),
+                closeOnSelect: false,
+                templateSelection: function (data, container) {
+                    console.log(data)
+                    // Add custom attributes to the <option> tag for the selected option
+                    selectorDiv = container[0].getElementsByClassName("select2-selection__choice__display")[0];
+                    selectorDiv.outerHTML += `
+                            <input min=1 name="SoLuongDV" value=1 type="number" style="margin-left: 10px;width: 40px;" class="sldv_" aria-invalid="false" onclick="focusON('#multiple-select-field', this)" onchange="updateInputChange('sldv_')">
+                            `
+                    return data.text;
+                }
+            });
+            $('#multiple-select-field').on('select2:select', function (e) {
+                updateInputChange('sldv_')
+            });
+            $('#multiple-select-field').on('select2:unselect', function (e) {
+                updateInputChange('sldv_')
+            });
+
+            $('#multiple-select-field2').select2({
+                theme: "bootstrap-5",
+                width: $(this).data('width') ? $(this).data('width') : $(this).hasClass('w-100') ? '100%' : 'style',
+                placeholder: $(this).data('placeholder'),
+                closeOnSelect: false,
+                templateSelection: function (data, container) {
+                    console.log(data)
+                    // Add custom attributes to the <option> tag for the selected option
+                    selectorDiv = container[0].getElementsByClassName("select2-selection__choice__display")[0];
+                    selectorDiv.outerHTML += `
+                            <input min=1 name="SoLuongSP" value=1 type="number" style="margin-left: 10px;width: 40px;" class="slsp_" aria-invalid="false" onclick="focusON('#multiple-select-field2', this)" onchange="updateInputChange('slsp_')">
+                            `
+                    return data.text;
+                }
+            });
+            $('#multiple-select-field2').on('select2:select', function (e) {
+                updateInputChange('slsp_')
+            });
+            $('#multiple-select-field2').on('select2:unselect', function (e) {
+                updateInputChange('slsp_')
+            });
+        });
+    </script>
 }

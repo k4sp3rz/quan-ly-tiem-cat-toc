@@ -120,6 +120,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\ChiTietHoaDonController.cs" />
     <Compile Include="Controllers\ChucVuController.cs" />
     <Compile Include="Controllers\CongNhanVienController.cs" />
     <Compile Include="Controllers\DichVuController.cs" />
@@ -147,6 +148,7 @@
     <Compile Include="Models\Model1.cs" />
     <Compile Include="Models\NhanVien.cs" />
     <Compile Include="Models\SanPhamKem.cs" />
+    <Compile Include="Models\ThongKe.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -154,6 +156,7 @@
     <Content Include="Content\bootstrap-grid.min.css" />
     <Content Include="Content\bootstrap-grid.rtl.css" />
     <Content Include="Content\bootstrap-grid.rtl.min.css" />
+    <Content Include="Content\bootstrap-multiselect.css" />
     <Content Include="Content\bootstrap-reboot.css" />
     <Content Include="Content\bootstrap-reboot.min.css" />
     <Content Include="Content\bootstrap-reboot.rtl.css" />
@@ -171,6 +174,7 @@
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Scripts\bootstrap-multiselect.js" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.esm.js" />
@@ -188,6 +192,7 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Scripts\popper.min.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -253,6 +258,12 @@
     <Content Include="Views\SanPhamKem\Details.cshtml" />
     <Content Include="Views\SanPhamKem\Edit.cshtml" />
     <Content Include="Views\SanPhamKem\Index.cshtml" />
+    <Content Include="Views\Statics\Index.cshtml" />
+    <Content Include="Views\ChiTietHoaDon\Create.cshtml" />
+    <Content Include="Views\ChiTietHoaDon\Delete.cshtml" />
+    <Content Include="Views\ChiTietHoaDon\Details.cshtml" />
+    <Content Include="Views\ChiTietHoaDon\Edit.cshtml" />
+    <Content Include="Views\ChiTietHoaDon\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

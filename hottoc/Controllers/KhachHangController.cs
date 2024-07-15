@@ -4,9 +4,12 @@ using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
+using System.Text;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.WebPages;
 using hottoc.Models;
+using Microsoft.Ajax.Utilities;
 
 namespace hottoc.Controllers
 {
@@ -120,6 +123,38 @@ namespace hottoc.Controllers
             db.KhachHangs.Remove(khachHang);
             db.SaveChanges();
             return RedirectToAction("Index");
+        }
+
+        public string NormalizeDiacriticalCharacters(string value)
+        {
+            if (value == null)
+            {
+                throw new ArgumentNullException("value");
+            }
+
+            var normalised = value.Normalize(NormalizationForm.FormD).ToLower().ToCharArray();
+
+            return new string(normalised.Where(c => (int)c <= 127).ToArray());
+        }
+
+        public ActionResult Search(string q)
+        {
+            if (q == null || q.IsEmpty())
+            {
+                return HttpNotFound();
+            }
+            var data = new Dictionary<string, int>();
+            var query = db.KhachHangs.AsEnumerable()
+                .Where(x => NormalizeDiacriticalCharacters(x.HoTen).Contains(NormalizeDiacriticalCharacters(q)));
+            if (query.Count() > 0)
+            {
+                query.ForEach(x =>
+                {
+                    if (!data.ContainsKey(x.HoTen))
+                        data.Add(x.HoTen, (int)x.SDT);
+                });
+            }
+            return Json(data, JsonRequestBehavior.AllowGet);
         }
 
         protected override void Dispose(bool disposing)

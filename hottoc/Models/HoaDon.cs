@@ -23,20 +23,27 @@ namespace hottoc.Models
         public string NhanVien { get; set; }
 
         [Column(TypeName = "datetime")]
-        public DateTime Ngay { get; set; }
+        public DateTime Ngay { get; set; } = DateTime.Now;
 
         public string TenKH { get; set; }
 
         public int? SDT { get; set; }
 
-        public int? TongSLSP { get; set; }
+        [NotMapped]
+        public List<int> DanhSachSP { get; set; }
+        [NotMapped]
+        public List<int> SoLuongSP { get; set; }
 
+        public int? TongSLSP { get; set; }
         public int? TongTienSP { get; set; }
 
-        public int TongSLDV { get; set; }
+        [NotMapped]
+        public List<int> DanhSachDV { get; set; }
+        [NotMapped]
+        public List<int> SoLuongDV { get; set; }
 
-        [Required]
-        public string TenDV { get; set; }
+        public int? TongTienDV { get; set; }
+        public int TongSLDV { get; set; }
 
         public decimal ThanhTien { get; set; }
 

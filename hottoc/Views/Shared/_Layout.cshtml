@@ -15,6 +15,15 @@
             }
         });
     </script>
+    <style>
+        .aaa {
+            -ms-overflow-style: none; /* IE and Edge */
+            scrollbar-width: none; /* Firefox */
+        }
+            .aaa::-webkit-scrollbar {
+                display: none;
+            }
+    </style>
 </head>
 <body>
     <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-dark">
@@ -60,12 +69,13 @@
                 }
             }
         </div>
-        <main class="container">
+        <main class="container aaa overflow-y-scroll">
             @RenderBody()
         </main>
     </div>
 
     @Scripts.Render("~/bundles/jquery")
+    <script src="~/Scripts/popper.min.js"></script>
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", false)
 </body>

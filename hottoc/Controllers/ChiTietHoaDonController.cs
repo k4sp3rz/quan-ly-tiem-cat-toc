@@ -10,129 +10,112 @@ using hottoc.Models;
 
 namespace hottoc.Controllers
 {
-    public class SanPhamKemController : Controller
+    public class ChiTietHoaDonController : Controller
     {
         private Model1 db = new Model1();
 
-        protected override void OnActionExecuting(ActionExecutingContext filterContext)
-        {
-            var id = Session["IDNV"];
-            if (id == null)
-                filterContext.Result = RedirectToAction("Index", "Login");
-            base.OnActionExecuting(filterContext);
-        }
-
-        public ActionResult Calculate(string q, int sl)
-        {
-            var sp = db.SanPhamKems.Where(x => x.TenSP.Equals(q)).FirstOrDefault();
-            if (sp == null)
-                return HttpNotFound();
-
-            return Content((sp.Gia * sl).ToString());
-        }
-
-        // GET: SanPhamKem
+        // GET: ChiTietHoaDon
         public ActionResult Index()
         {
-            var sanPhamKems = db.SanPhamKems.Include(s => s.HinhAnh);
-            return View(sanPhamKems.ToList());
+            var chiTietHoaDons = db.ChiTietHoaDons.Include(c => c.HoaDon);
+            return View(chiTietHoaDons.ToList());
         }
 
-        // GET: SanPhamKem/Details/5
+        // GET: ChiTietHoaDon/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            SanPhamKem sanPhamKem = db.SanPhamKems.Find(id);
-            if (sanPhamKem == null)
+            ChiTietHoaDon chiTietHoaDon = db.ChiTietHoaDons.Find(id);
+            if (chiTietHoaDon == null)
             {
                 return HttpNotFound();
             }
-            return View(sanPhamKem);
+            return View(chiTietHoaDon);
         }
 
-        // GET: SanPhamKem/Create
+        // GET: ChiTietHoaDon/Create
         public ActionResult Create()
         {
-            ViewBag.IDHinh = new SelectList(db.HinhAnhs, "ID", "DuongDan");
+            ViewBag.IDHoaDon = new SelectList(db.HoaDons, "ID", "NhanVien");
             return View();
         }
 
-        // POST: SanPhamKem/Create
+        // POST: ChiTietHoaDon/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,TenSP,MoTa,DonViTinh,Gia,IDHinh")] SanPhamKem sanPhamKem)
+        public ActionResult Create([Bind(Include = "ID,IDHoaDon,Loai,TenSP,SoLuong,ThanhTien")] ChiTietHoaDon chiTietHoaDon)
         {
             if (ModelState.IsValid)
             {
-                db.SanPhamKems.Add(sanPhamKem);
+                db.ChiTietHoaDons.Add(chiTietHoaDon);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            ViewBag.IDHinh = new SelectList(db.HinhAnhs, "ID", "DuongDan", sanPhamKem.IDHinh);
-            return View(sanPhamKem);
+            ViewBag.IDHoaDon = new SelectList(db.HoaDons, "ID", "NhanVien", chiTietHoaDon.IDHoaDon);
+            return View(chiTietHoaDon);
         }
 
-        // GET: SanPhamKem/Edit/5
+        // GET: ChiTietHoaDon/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            SanPhamKem sanPhamKem = db.SanPhamKems.Find(id);
-            if (sanPhamKem == null)
+            ChiTietHoaDon chiTietHoaDon = db.ChiTietHoaDons.Find(id);
+            if (chiTietHoaDon == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.IDHinh = new SelectList(db.HinhAnhs, "ID", "DuongDan", sanPhamKem.IDHinh);
-            return View(sanPhamKem);
+            ViewBag.IDHoaDon = new SelectList(db.HoaDons, "ID", "NhanVien", chiTietHoaDon.IDHoaDon);
+            return View(chiTietHoaDon);
         }
 
-        // POST: SanPhamKem/Edit/5
+        // POST: ChiTietHoaDon/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,TenSP,MoTa,DonViTinh,Gia,IDHinh")] SanPhamKem sanPhamKem)
+        public ActionResult Edit([Bind(Include = "ID,IDHoaDon,Loai,TenSP,SoLuong,ThanhTien")] ChiTietHoaDon chiTietHoaDon)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(sanPhamKem).State = EntityState.Modified;
+                db.Entry(chiTietHoaDon).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.IDHinh = new SelectList(db.HinhAnhs, "ID", "DuongDan", sanPhamKem.IDHinh);
-            return View(sanPhamKem);
+            ViewBag.IDHoaDon = new SelectList(db.HoaDons, "ID", "NhanVien", chiTietHoaDon.IDHoaDon);
+            return View(chiTietHoaDon);
         }
 
-        // GET: SanPhamKem/Delete/5
+        // GET: ChiTietHoaDon/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            SanPhamKem sanPhamKem = db.SanPhamKems.Find(id);
-            if (sanPhamKem == null)
+            ChiTietHoaDon chiTietHoaDon = db.ChiTietHoaDons.Find(id);
+            if (chiTietHoaDon == null)
             {
                 return HttpNotFound();
             }
-            return View(sanPhamKem);
+            return View(chiTietHoaDon);
         }
 
-        // POST: SanPhamKem/Delete/5
+        // POST: ChiTietHoaDon/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            SanPhamKem sanPhamKem = db.SanPhamKems.Find(id);
-            db.SanPhamKems.Remove(sanPhamKem);
+            ChiTietHoaDon chiTietHoaDon = db.ChiTietHoaDons.Find(id);
+            db.ChiTietHoaDons.Remove(chiTietHoaDon);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

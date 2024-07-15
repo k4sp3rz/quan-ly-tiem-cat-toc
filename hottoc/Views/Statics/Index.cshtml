@@ -1,0 +1,157 @@
+﻿@model Tuple<List<hottoc.Models.ChiTietHoaDon>, List<hottoc.Models.ChiTietHoaDon>, List<hottoc.Models.ChiTietHoaDon>>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var AlreadyAdd = new List<String>();
+}
+
+<h2>Các sản phẩm đã bán được trong hôm nay</h2>
+<table class="table">
+    <tr>
+        <th>Tên sản phẩm</th>
+        <th>Tổng số lượng bán được</th>
+        <th>Tổng tiền</th>
+        <th>@Model.Item1.Count</th>
+    </tr>
+    @foreach (var item in Model.Item1)
+    {
+        <tr>
+            <td>@item.TenSP</td>
+            <td>@Model.Item1.Where(x => x.TenSP == item.TenSP).Sum(x => x.SoLuong) </td>
+            <td>@Model.Item1.Where(x => x.TenSP == item.TenSP).Sum(x => x.ThanhTien)</td>
+        </tr>
+    }
+
+</table>
+
+<h2>Các sản phẩm đã bán được trong tháng này</h2>
+<table class="table">
+    <tr>
+        <th>Tên sản phẩm</th>
+        <th>Tổng số lượng bán được</th>
+        <th>Tổng tiền</th>
+        <th>@Model.Item2.Count</th>
+    </tr>
+    @foreach (var item in Model.Item2)
+    {
+        if (AlreadyAdd.Contains(item.TenSP))
+        {
+            continue;
+        }
+        <tr>
+            <td>@item.TenSP</td>
+            <td>@Model.Item2.Where(x => x.TenSP == item.TenSP).Sum(x => x.SoLuong) </td>
+            <td>@Model.Item2.Where(x => x.TenSP == item.TenSP).Sum(x => x.ThanhTien)</td>
+        </tr>
+        AlreadyAdd.Add(item.TenSP);
+    }
+
+</table>
+
+<h2>Các sản phẩm đã bán được trong năm này</h2>
+<table class="table">
+    <tr>
+        <th>Tên sản phẩm</th>
+        <th>Tổng số lượng bán được</th>
+        <th>Tổng tiền</th>
+        <th>@Model.Item3.Count</th>
+    </tr>
+    @foreach (var item in Model.Item2)
+    {
+        if (AlreadyAdd.Contains(item.TenSP))
+        {
+            continue;
+        }
+        <tr>
+            <td>@item.TenSP</td>
+            <td>@Model.Item3.Where(x => x.TenSP == item.TenSP).Sum(x => x.SoLuong) </td>
+            <td>@Model.Item3.Where(x => x.TenSP == item.TenSP).Sum(x => x.ThanhTien)</td>
+        </tr>
+        AlreadyAdd.Add(item.TenSP);
+    }
+
+</table>
+@*<table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.NhanVien)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Ngay)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TenKH)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SDT)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TongSLSP)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TongTienSP)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TongSLDV)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TenDV)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ThanhTien)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.KhachTra)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ThoiLai)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NhanVien)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Ngay)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TenKH)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SDT)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TongSLSP)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TongTienSP)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TongSLDV)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TenDV)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ThanhTien)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.KhachTra)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ThoiLai)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.ID }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+                </td>
+            </tr>
+        }
+
+    </table>*@

@@ -37,6 +37,15 @@ namespace hottoc.Controllers
             return View(dichVus.ToList());
         }
 
+        public ActionResult Calculate(string q, int sl)
+        {
+            var sp = db.DichVus.Where(x => x.TenDV.Equals(q)).FirstOrDefault();
+            if (sp == null)
+                return HttpNotFound();
+
+            return Content((sp.Gia * sl).ToString());
+        }
+
         // GET: DichVu/Details/5
         public ActionResult Details(int? id)
         {
