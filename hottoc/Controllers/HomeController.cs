@@ -88,7 +88,8 @@ namespace hottoc.Controllers
             Session["CanEdit"] = true;
 
             var s = ThongKeNgay.UseDB(db);
-            return View();
+            var ss = ThongKeThang.UseDB(db);
+            return View(new Tuple<ThongKeNgay, ThongKeThang>(s, ss));
         }
 
         public ActionResult Logout()
