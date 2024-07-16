@@ -9,7 +9,9 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.WebPages;
 using hottoc.Models;
+using hottoc.Models.ThongKe;
 using Microsoft.Ajax.Utilities;
+using static hottoc.Models.ThongKe.ThongKeKhachHang;
 
 namespace hottoc.Controllers
 {
@@ -49,6 +51,13 @@ namespace hottoc.Controllers
         public ActionResult Create()
         {
             return View();
+        }
+
+        public ActionResult ThongKe()
+        {
+            var thongkeKHdaily = ThongKeKhachHang.GetDailyCustomerFrequency(db);
+            var thongkeKHmonthly = ThongKeKhachHang.GetMonthlyCustomerFrequency(db);
+            return View(new Tuple<List<CustomerInfo>, List<CustomerInfo>>(thongkeKHdaily, thongkeKHmonthly));
         }
 
         // POST: KhachHang/Create

@@ -1,6 +1,7 @@
 ﻿using Microsoft.Ajax.Utilities;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Web;
 
@@ -137,7 +138,8 @@ namespace hottoc.Models.ThongKe
             var self = new ThongKeThang();
 
             int month = DateTime.Now.Month;
-            if (monthGet.HasValue) {
+            if (monthGet.HasValue)
+            {
                 month = monthGet.Value;
             }
 
@@ -189,43 +191,78 @@ namespace hottoc.Models.ThongKe
 
     public class ThongKeKhachHang
     {
-        public class CustomerDailyFrequency
+        public class CustomerInfo
         {
-            public DateTime Date { get; set; }
-            public int CustomerID { get; set; }
-            public int OrderCount { get; set; }
+            public string TenKH { get; set; }
+            public int TongDV { get; set; }
+            public decimal TongTienDV { get; set; }
+            public int TongSP { get; set; }
+            public decimal TongTienSP { get; set; }
         }
-        public class CustomerMonthlyFrequency
+
+        public static List<CustomerInfo> GetDailyCustomerFrequency(Model1 db)
         {
-            public int Day { get; set; }
-            public int Month { get; set; }
-            public int CustomerID { get; set; }
-            public int OrderCount { get; set; }
-        }
-        public static List<CustomerDailyFrequency> GetDailyCustomerFrequency(Model1 db)
-        {
-            return db.HoaDons
-                .GroupBy(h => new { h.Ngay, h.ID })
-                .Select(g => new CustomerDailyFrequency
+            var self = new List<CustomerInfo>();
+            db.HoaDons.Where(x => x.Ngay.Day == DateTime.Now.Day)
+                .ForEach(x =>
                 {
-                    Date = g.Key.Ngay,
-                    CustomerID = g.Key.ID,
-                    OrderCount = g.Count()
-                })
-                .ToList();
+                    var isSet = self.Where(s => s.TenKH == x.TenKH).FirstOrDefault().IfNotNull(s =>
+                    {
+                        s.TongDV += x.TongSLDV;
+                        s.TongTienDV += (int)x.TongTienDV;
+                        s.TongSP += (int)x.TongSLSP;
+                        s.TongTienSP += (int)x.TongTienSP;
+                        return true;
+                    }, false);
+
+                    if (!isSet)
+                    {
+                        self.Add(
+                            new CustomerInfo
+                            {
+                                TongDV = x.TongSLDV,
+                                TongTienDV = (int)x.TongTienDV,
+                                TongSP = (int)x.TongSLSP,
+                                TongTienSP = (int)x.TongTienSP,
+                            });
+                    }
+                });
+            return self;
         }
-        public static List<CustomerMonthlyFrequency> GetMonthlyCustomerFrequency(Model1 db)
+        public static List<CustomerInfo> GetMonthlyCustomerFrequency(Model1 db, int? monthGet = null)
         {
-            return db.HoaDons
-                .GroupBy(h => new { h.Ngay.Day, h.Ngay.Month, h.ID })
-                .Select(g => new CustomerMonthlyFrequency
+            var self = new List<CustomerInfo>();
+            int month = DateTime.Now.Month;
+            if (monthGet.HasValue)
+            {
+                month = monthGet.Value;
+            }
+
+            db.HoaDons.Where(x => x.Ngay.Month == month)
+                .ForEach(x =>
                 {
-                    Day = g.Key.Day,
-                    Month = g.Key.Month,
-                    CustomerID = g.Key.ID,
-                    OrderCount = g.Count()
-                })
-                .ToList();
+                    var isSet = self.Where(s => s.TenKH == x.TenKH).FirstOrDefault().IfNotNull(s =>
+                    {
+                        s.TongDV += x.TongSLDV;
+                        s.TongTienDV += (int)x.TongTienDV;
+                        s.TongSP += (int)x.TongSLSP;
+                        s.TongTienSP += (int)x.TongTienSP;
+                        return true;
+                    }, false);
+
+                    if (!isSet)
+                    {
+                        self.Add(
+                            new CustomerInfo
+                            {
+                                TongDV = x.TongSLDV,
+                                TongTienDV = (int)x.TongTienDV,
+                                TongSP = (int)x.TongSLSP,
+                                TongTienSP = (int)x.TongTienSP,
+                            });
+                    }
+                });
+            return self;
         }
     }
 }
