@@ -185,12 +185,20 @@ else
             </div>
         </div>
         <div class="card">
-            <div class="card-header" id="headingTwo">
+            <div class="card-header d-flex flex-row" id="headingTwo">
                 <h5 class="mb-0">
                     <button onclick="selfToggle('collapseTwo')" class="btn btn-link" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
-                        Thống kê hàng tháng
+                        @if (ViewBag.Month != null)
+                        {
+                            @Html.Raw($"Thống kê của tháng {ViewBag.Month}");
+                        }
+                        else
+                        {
+                            @Html.Raw("Thống kê hàng tháng");
+                        }
                     </button>
                 </h5>
+                <input onfocusout="window.location.href=`/Home/Index?month=${this.value.split('-')[1]}`" style="width: 21px; border: unset; background: unset" type="date" />
             </div>
 
             <div id="collapseTwo" class="collapse show" aria-labelledby="headingTwo" data-parent="#accordion">

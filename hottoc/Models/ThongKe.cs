@@ -132,11 +132,16 @@ namespace hottoc.Models.ThongKe
         public DanhSachChiTiet ChiTietDichVu { get; set; } = new DanhSachChiTiet();
         public DanhSachChiTiet ChiTietSanPham { get; set; } = new DanhSachChiTiet();
 
-        public static ThongKeThang UseDB(Model1 db)
+        public static ThongKeThang UseDB(Model1 db, int? monthGet = null)
         {
             var self = new ThongKeThang();
 
-            db.HoaDons.Where(x => x.Ngay.Month == DateTime.Now.Month).ForEach(item =>
+            int month = DateTime.Now.Month;
+            if (monthGet.HasValue) {
+                month = monthGet.Value;
+            }
+
+            db.HoaDons.Where(x => x.Ngay.Month == month).ForEach(item =>
             {
                 self.TongDoanhThu += item.ThanhTien;
                 self.TongKhacHang += 1;
@@ -177,8 +182,50 @@ namespace hottoc.Models.ThongKe
                     });
             });
 
-            self.TongLichHen = db.LichHens.Where(x => x.ThoiGianHen.Month == DateTime.Now.Month).Count();
+            self.TongLichHen = db.LichHens.Where(x => x.ThoiGianHen.Month == month).Count();
             return self;
+        }
+    }
+
+    public class ThongKeKhachHang
+    {
+        public class CustomerDailyFrequency
+        {
+            public DateTime Date { get; set; }
+            public int CustomerID { get; set; }
+            public int OrderCount { get; set; }
+        }
+        public class CustomerMonthlyFrequency
+        {
+            public int Day { get; set; }
+            public int Month { get; set; }
+            public int CustomerID { get; set; }
+            public int OrderCount { get; set; }
+        }
+        public static List<CustomerDailyFrequency> GetDailyCustomerFrequency(Model1 db)
+        {
+            return db.HoaDons
+                .GroupBy(h => new { h.Ngay, h.ID })
+                .Select(g => new CustomerDailyFrequency
+                {
+                    Date = g.Key.Ngay,
+                    CustomerID = g.Key.ID,
+                    OrderCount = g.Count()
+                })
+                .ToList();
+        }
+        public static List<CustomerMonthlyFrequency> GetMonthlyCustomerFrequency(Model1 db)
+        {
+            return db.HoaDons
+                .GroupBy(h => new { h.Ngay.Day, h.Ngay.Month, h.ID })
+                .Select(g => new CustomerMonthlyFrequency
+                {
+                    Day = g.Key.Day,
+                    Month = g.Key.Month,
+                    CustomerID = g.Key.ID,
+                    OrderCount = g.Count()
+                })
+                .ToList();
         }
     }
 }

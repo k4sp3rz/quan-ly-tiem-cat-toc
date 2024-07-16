@@ -4,6 +4,7 @@ using Microsoft.Ajax.Utilities;
 using System;
 using System.Collections.Generic;
 using System.EnterpriseServices.CompensatingResourceManager;
+using System.Globalization;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -79,16 +80,23 @@ namespace hottoc.Controllers
                 db.SaveChanges();
             }
         }
-        public ActionResult Index()
+        public ActionResult Index(int? month)
         {
             checkDb();
-            Session["IDNV"] = 0;
-            Session["TenNV"] = "bypass";
-            Session["Role"] = "Chủ tiệm";
-            Session["CanEdit"] = true;
+            if (Session["IDNV"] == null)
+            {
+                Session["IDNV"] = 0;
+                Session["TenNV"] = "bypass";
+                Session["Role"] = "Chủ tiệm";
+                Session["CanEdit"] = true;
+            }
 
             var s = ThongKeNgay.UseDB(db);
-            var ss = ThongKeThang.UseDB(db);
+            var ss = ThongKeThang.UseDB(db, month);
+            if (month.HasValue)
+            {
+                ViewBag.Month = month.Value;
+            }
             return View(new Tuple<ThongKeNgay, ThongKeThang>(s, ss));
         }
 
